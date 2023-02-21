@@ -5,7 +5,7 @@ FROM python:3.6
 WORKDIR /app
 
 # add the current directory to the container as /app
-COPY src /app
+COPY . /app
 
 # pip install flask
 RUN pip install --upgrade pip && \
