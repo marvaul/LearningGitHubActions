@@ -14,7 +14,7 @@ jobs:
       - name : Install requirements
         run : | 
           pwd
-          pip install --quiet --requirement ./src/requirement.txt
+          pip install --quiet --requirement requirement.txt
       - name : Lint code
         run : |
           flake8 --ignore=E501,E231 *.py
