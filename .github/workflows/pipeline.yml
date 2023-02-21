@@ -3,6 +3,7 @@ name: Pipeline
 on: [push]
 env:
   APPLICATION_NAME: app2
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 jobs:
   lint:
     runs-on: ubuntu-18.04
@@ -11,7 +12,9 @@ jobs:
       - name: Setup Python environment
         uses: actions/setup-python@v1.1.1
       - name: Install requirements
-        run: pip install --quiet --requirement ./src/requirements.txt
+        run: |
+          cd ./src/
+          pip install --quiet --requirement ./src/requirements.txt
       - name: Lint code
         run: |
           flake8 --ignore=E501,E231 *.py
