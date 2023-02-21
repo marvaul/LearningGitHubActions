@@ -13,7 +13,7 @@ jobs:
         uses : actions/setup-python@v1.1.1
       - name : Install requirements
         run : | 
-          pip install --quiet --requirement src/requirement.txt
+          pip install --quiet --requirement ./src/requirement.txt
       - name : Lint code
         run : |
           flake8 --ignore=E501,E231 *.py
