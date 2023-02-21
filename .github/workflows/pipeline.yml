@@ -1,0 +1,23 @@
+name: Pipeline
+
+on: [push]
+env:
+  APPLICATION_NAME: app2
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name : Setup Python Environment
+        uses : actions/setup-python@v1.1.1
+      - name : Install requirements
+        run : | 
+          cd src/
+          pip install --quiet --requirement requirement.txt
+      - name : Lint code
+        run : |
+          flake8 --ignore=E501,E231 *.py
+          pylint --disable=C0301 --disable=C0326 *.py
+      - name : Run Unit Test
+        run : |
+          python -m unittest --verbose --failfast
